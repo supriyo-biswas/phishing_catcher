@@ -219,11 +219,12 @@ def callback(message, context):
                     "\033[4m{}\033[0m\033[91m (score={})\033[0m".format(domain,
                                                                         score))
                 with open(log_suspicious, 'a') as f:
-                    f.write("{}\n".format(domain))
+                    f.write("Suspicious: {} (score={})\n".format(domain, score))
             elif score > 65:
                 tqdm.tqdm.write(
                     "Potential: "
                     "\033[4m{}\033[0m\033[0m (score={})".format(domain, score))
-
+                with open(log_suspicious, 'a') as f:
+                    f.write("Potential: {} (score={})\n".format(domain, score))
 
 certstream.listen_for_events(callback)
